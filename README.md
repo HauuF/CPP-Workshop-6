@@ -13,18 +13,18 @@ La [Matriz de Eisenhower](https://asana.com/es/resources/eisenhower-matrix) es u
 
 Basado en esta idea, le han pedido que desarrolle un programa con los siguientes requerimientos:
 
-1. [Defina una estructura](./libs/Task.h) que represente una tarea, con los siguientes atributos:
+1. [Defina una estructura](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/Task.h#L11) que represente una tarea, con los siguientes atributos:
    - **description**: cadena de caracteres que describe una tarea.  
    - **isUrgent**: un booleano que indica si la tarea es urgente o no.
    - **isImportant**: un booleano que indica si la tarea es importante o no.
    - **estimatedTime**: un entero que indica el tiempo estimado, en minutos, necesario para completar la tarea.
-2. [Desarrolle una función](./libs/Task.h) que lea un archivo de texto  que contiene una lista de tareas con el siguiente formato:
+2. [Desarrolle una función](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/Task.h#L17) que permita leer un archivo de texto que contiene una lista de tareas con el siguiente formato:
    ```c++
     Study Biology exam;0;0;120
    ```
    Como puede observar, cada uno de los datos corresponden con los atributos de la estructura que definimos previamente.</br></br>
    
    La función debe retornar una lista de tareas y recibir por referencia el nombre del archivo que debe leer.</br></br>
-3. [Desarrolle una función](./libs/TaskBinary.h) que escriba la lista leída del archivo de texto y lo guarde en un archivo binario. Esta función recibe por referencia el nombre del archivo y la lista de tareas que va a escribir.</br></br>
-4. [Desarrolle una función](./libs/Task.h) que reciba por referencia la lista de tareas leídas desde el archivo binario, luego debe eliminar todas las tareas del cuadrante "eliminar" y cree un nuevo archivo binario con la lista sin las tareas del cuadrante.</br></br>
-5. Desarrolle una función que reciba como parámetro una lista de tareas y escriba 4 archivos de texto (uno por cada cuadrante de la Matriz de Eisenhower) en donde cada línea representa una tarea. El formato de cada línea es `‹descripcion›: ‹tiempoEstimado>minutos`. Las líneas de estos archivos deben ir ordenadas de forma descendente según el estimado de tiempo (de la tarea que requiera menos tiempo a la tarea que requiera más tiempo). Tiene un ejemplo de cada uno de estos archivos en la raíz de este proyecto.
+3. [Desarrolle una función](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/TaskBinary.h#L6) que escriba la lista leída del archivo de texto y lo guarde en un archivo binario. Esta función recibe por referencia el nombre del archivo y la lista de tareas que va a escribir.</br></br>
+4. Desarrolle una función([Parte 1](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/Task.h#L68) y [parte 2](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/Task.h#L61)) que reciba por referencia la lista de tareas leídas desde el archivo binario, luego debe eliminar todas las tareas del cuadrante "eliminar" y cree un nuevo archivo binario con la lista sin las tareas del cuadrante.</br></br>
+5. Desarrolle una función (parte [1](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/libs/Task.h#L48) y [2](https://github.com/clase-programacion-avanzada/CPP-Workshop-6/blob/main/Taller6.cpp#L95)) que reciba como parámetro una lista de tareas y escriba 4 archivos de texto (uno por cada cuadrante de la Matriz de Eisenhower) en donde cada línea representa una tarea. El formato de cada línea es `‹descripcion›: ‹tiempoEstimado>minutos`. Las líneas de estos archivos deben ir ordenadas de forma descendente según el estimado de tiempo (de la tarea que requiera menos tiempo a la tarea que requiera más tiempo). Tiene un ejemplo de cada uno de estos archivos en la raíz de este proyecto.
