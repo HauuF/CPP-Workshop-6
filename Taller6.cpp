@@ -2,9 +2,9 @@
 
 
 #include <iostream>
-#include "./libs/Task.h"
-#include "./libs/TextFileHandler.h"
-#include "./libs/TaskBinary.h"
+#include ".../libs/Task.h"
+#include ".../libs/TextFileHandler.h"
+#include ".../libs/TaskBinary.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int main() {
     
     int option = 0;
     string textFile = "tasks.txt";
-    string binaryFile = "tasks.bin";
+    string binaryFile = "tasks.bin";  
     List<Task> tasksFromTextFile;
     List<Task> tasksFromBinaryFile;
     List<Task> taskWithoutDeleteQuadrant;

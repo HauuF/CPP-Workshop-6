@@ -9,23 +9,31 @@
 using namespace std;
 /*Punto 1*/
 struct Task {
-
-    
-
+string description;
+bool isUrgent = true;
+bool isImportant = true;
+int estimatedTime = 0;
 };
 
 /*Punto 2*/
 Task getTaskFromLine(string &line, char delimiter = ';') {
     Task task;
-    
-    //parse the line and create a task
+    TextFileHandler fileHandler("tasks.txt");
+    List<string> lines = fileHandler.readLines();  
     List<string> tokens = split(line, delimiter);
-    
-    
-
-    //remember to free the memory of tokens
-    
-
+    for(int i = 0; i < lines.size; i++){
+        line = lines.get(i);  
+        task.description = tokens.get(0);
+        task.isUrgent = tokens.get(1);
+        if(task.isUrgent == 0){
+            return true;
+        }
+        task.isImportant = tokens.get(2);
+        if(task.isImportant == 0){
+            return true;
+        }
+        task.estimatedTime = tokens.get(3);
+    }
     return task;
 }
 

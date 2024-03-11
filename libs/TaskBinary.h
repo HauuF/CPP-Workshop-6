@@ -14,6 +14,8 @@ struct TaskBinary {
 TaskBinary toBinaryTask(Task& task) {
     TaskBinary taskBinary;
     
+
+    
     return taskBinary;
 }
 
