@@ -1,10 +1,8 @@
 #include "libs/List.h"
-
-
 #include <iostream>
-#include ".../libs/Task.h"
-#include ".../libs/TextFileHandler.h"
-#include ".../libs/TaskBinary.h"
+#include "libs/Task.h"
+#include "libs/TextFileHandler.h"
+#include "libs/TaskBinary.h"
 
 using namespace std;
 

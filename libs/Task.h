@@ -2,7 +2,7 @@
 #define EISENHOWER_TASK_H
 
 #include <string>
-//#include "List.h"
+#include "List.h"
 #include "TextFileHandler.h"
 #include "BinaryFileHandler.h"
 
@@ -16,40 +16,42 @@ int estimatedTime = 0;
 };
 
 /*Punto 2*/
-Task getTaskFromLine(string &line, char delimiter = ';') {
+Task getTaskFromLine(string line, char delimiter = ';') {
     Task task;
-    TextFileHandler fileHandler("tasks.txt");
-    List<string> lines = fileHandler.readLines();  
     List<string> tokens = split(line, delimiter);
-    for(int i = 0; i < lines.size; i++){
-        line = lines.get(i);  
-        task.description = tokens.get(0);
-        task.isUrgent = tokens.get(1);
-        if(task.isUrgent == 0){
-            return true;
-        }
-        task.isImportant = tokens.get(2);
-        if(task.isImportant == 0){
-            return true;
-        }
-        task.estimatedTime = tokens.get(3);
+    int parabool1, parabool2;
+    task.description = tokens.get(0);
+    parabool1 = stoi(tokens.get(1));
+    if(parabool1 == 0){
+        task.isUrgent = true;
+    }else{
+        task.isUrgent = false;
     }
+    parabool2 = stoi(tokens.get(2));
+    if(parabool2 == 0){
+        task.isImportant = true;
+    }else{
+        task.isImportant = false;
+    }
+    task.estimatedTime = stoi(tokens.get(3));
     return task;
 }
 
 List<Task> getTasksFromLines(List<string>& lines, char delimiter = ';') {
     List<Task> tasks;
-
-
-
+    for (int i = 0; i < lines.size; i++) {
+        Task task = getTaskFromLine(lines.get(i), delimiter);
+        tasks.add(task);
+    }
     return tasks;
 }
 
 List<Task> readTasksFromTextFile(string& path) {
 
     List<Task> tasks;
-    
-     
+    TextFileHandler fileHandler(path);
+    List<string> lines = fileHandler.readLines();
+    tasks = getTasksFromLines(lines);
     return tasks;
 }
 
