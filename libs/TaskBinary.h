@@ -21,15 +21,15 @@ TaskBinary toBinaryTask(Task& task) {
     string importante, urgente;
         strcpy(taskBinary.binaryDescription, task.description.c_str());
         if(task.isUrgent == true){
-            urgente = '1';
-        }else{
             urgente = '0';
-        }
+        }else{
+            urgente = '1';
+        } 
         strcpy(taskBinary.binaryUrgent, urgente.c_str());
         if(task.isImportant == true){
-            importante = '1';
-        }else{
             importante = '0';
+        }else{
+            importante = '1';
         }
         strcpy(taskBinary.binaryImportant, importante.c_str());
         strcpy(taskBinary.binaryTime, to_string(task.estimatedTime).c_str());  
@@ -47,33 +47,40 @@ Task toTask(TaskBinary& taskBinary) {
 
 List<TaskBinary> toTaskBinaryList(List<Task>& tasks) {
     List<TaskBinary> taskBinaries;
-
+    for (int i = 0; i < tasks.size; i++) {
+        Task task = tasks.get(i);
+        TaskBinary taskBinary = toBinaryTask(task);
+        taskBinaries.add(taskBinary);
+    }
     return taskBinaries;
 }
 
 List<Task> toTaskList(List<TaskBinary>& taskBinaries) {
     List<Task> tasks;
-
+    for (int i = 0; i < taskBinaries.size; i++) {
+        TaskBinary taskBinary = taskBinaries.get(i);
+        Task task = toTask(taskBinary);
+        tasks.add(task);
+    }
     return tasks;
 }
 
 List<Task> readTasksFromBinaryFile(string& path) {
-    List<TaskBinary> taskBinaries;
     List<Task> tasks;
-
+    BinaryFileHandler<TaskBinary> fileHandler(path);
+    List<TaskBinary> taskBinaries = fileHandler.readBinaryFile();
+    for (int i = 0; i < taskBinaries.size; i++) {
+        TaskBinary taskBinary = taskBinaries.get(i);
+        Task task = toTask(taskBinary);
+        tasks.add(task);
+    }
     return tasks;
 }
 
-
 bool writeTasksToBinaryFile(List<Task>& tasks, string& path) {
-    
-    List<TaskBinary> taskBinaries;
-
-    return false;
+    List<TaskBinary> taskBinaries = toTaskBinaryList(tasks);
+    BinaryFileHandler<TaskBinary> fileHandler(path);
+    return fileHandler.writeBinaryFile(taskBinaries);
 }
-
-
-
-
 
 #endif

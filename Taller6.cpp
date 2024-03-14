@@ -66,6 +66,7 @@ int main() {
                     break;
                 }
                 taskWithoutDeleteQuadrant = removeDeleteQuadrantTasks(tasksFromBinaryFile);
+                tasksFromBinaryFile = taskWithoutDeleteQuadrant;
                 break;
             case 6:
                 if (tasksFromBinaryFile.size == 0) {
@@ -92,10 +93,31 @@ int main() {
 }
 /*Punto 5 -parte 2*/
 void writeReportFiles(List<Task>& tasks) {
-    //If you use Lists here don't forget to free the memory
-    
-
-
+    TextFileHandler planifyHandler("planifyQuadrant.txt");
+    TextFileHandler eliminateHandler("eliminateQuadrant.txt");
+    TextFileHandler doHandler("doQuadrant.txt");
+    TextFileHandler delegateHandler("delegateQuadrant.txt");
+    List<string> planifyLines;
+    List<string> eliminateLines;
+    List<string> doLines;
+    List<string> delegateLines;
+    for (int i = 0; i < tasks.size; i++) {
+        Task task = tasks.get(i);
+        string line = getLineReportFromTask(task);
+        if (!task.isImportant && task.isUrgent) {
+            planifyLines.add(line);
+        } else if (!task.isImportant && !task.isUrgent) {
+            eliminateLines.add(line);
+        } else if (task.isImportant && task.isUrgent) {
+            doLines.add(line);
+        } else {
+            delegateLines.add(line);
+        }
+    }
+    planifyHandler.writeLines(planifyLines);
+    eliminateHandler.writeLines(eliminateLines);
+    doHandler.writeLines(doLines);
+    delegateHandler.writeLines(delegateLines);
 }
 
 
@@ -110,16 +132,11 @@ void printMenu() {
 }
 
 void printTasks(List<Task>& tasks) {
-    /*
     for (int i = 0; i < tasks.size; i++) {
         Task task = tasks.get(i);
         cout << task.description 
         << (task.isUrgent ? " Urgente" : " No urgente")
         << (task.isImportant ? " Importante" : " No importante")
         << " " << task.estimatedTime << " minutos" << endl;
-
     }
-    */
 }
-
-
